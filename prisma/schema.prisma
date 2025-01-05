@@ -39,6 +39,7 @@ model User {
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt
   account   Account[]
+  session   Session[]
   
   @@map("users")
 }
@@ -61,4 +62,13 @@ model Account {
  
   @@unique([provider, providerAccountId])
   @@map("accounts")
+}
+
+model Session {
+  sessionToken String   @id
+  userId       String   @db.Uuid
+  expires      DateTime @db.Timestamp(6)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@map("sessions")
 }
