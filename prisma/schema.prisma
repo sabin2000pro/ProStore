@@ -32,9 +32,33 @@ model User {
   email         String?   @unique(map: "user_email_idx")
   emailVerified DateTime? @db.Timestamp(6)
   image         String?
-  password  String
+  password  String?
+  role      String  @default("user")
+  address   Json?    @db.Json
+  paymentMethod String?
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt
+  account   Account[]
   
   @@map("users")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @db.Uuid
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
