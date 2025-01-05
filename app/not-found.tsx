@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 const NotFoundPage = () => {
 
     return <>
+    
         <div className = 'flex flex-col items-center justify-center min-h-screen'>
 
             <Image
@@ -20,8 +21,11 @@ const NotFoundPage = () => {
 
                 <h1 className="text-3xl font-bold mb-4">404 - Page Not Found</h1>
                 <p className="text-destructive">Could not find the page you requested.</p>
-                <Button className = 'mt-4 ml-2' variant = 'outline'
-                    onClick = {() => (window.location.href = '/')}
+
+                <Button 
+                 className = 'mt-4 ml-2' 
+                 variant = 'outline'
+                 onClick = {() => (window.location.href = '/')}
                 >Back Home</Button>
 
             </div>

@@ -11,6 +11,7 @@ const ProductImages = ({images}: {images: string[]}) => {
     return <>
 
        <div className = "space-y-4">
+        
             <Image
              className = 'min-h-[300px] object-cover object-center'
              src = {images[current]} 
@@ -33,7 +34,7 @@ const ProductImages = ({images}: {images: string[]}) => {
                           alt = 'image' 
                           width = {100} 
                           height = {100} />
-                          
+
                      </div>
                     
                 ))}
